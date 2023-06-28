@@ -1,0 +1,86 @@
+cd node para entrar en la carpeta
+npm init -y
+en el .json abajo del main agregamos "type": "module". 
+ya que ahora se usa import mas que requiere.
+npm i express cors mysql2 sequelize sequelize-cli 
+
+node > database
+         >db.js
+     > controllers
+         > BlogController.js
+     > routes
+         > routes.js
+     > models
+         > BlogModel.js
+     > app.js
+Creamos la base de datos en xammp admin nombre: "database_app"
+El nombre de la tabla va a ser "blog" con los campos:
+id int autoincremental
+title- varchar 100
+content- varchar 150
+createdAt- date (Esto es necesario segun la documentacion de secualize)
+updatedAt- date (Este elemento tambien)
+
+Insertamos esto en la tabla con el comando: INSERT
+--------------------------------------------------
+INSERT INTO blog (id, title, content) 
+VALUES  (1, 'Titulo 1', 'contenido de mi primer post'),
+(2, 'Titulo 2', 'contenido de mi segundo post'),
+(3, 'Titulo 3', 'contenido de mi tercer post'),
+(4, 'Titulo 4', 'contenido de mi cuarto post'),
+(5, 'Titulo 5', 'contenido de mi quinto post');
+-------------------------------------------------
+
+importamos en db.js las librerias y hacemos su configuracion.
+importamos la conexion en Blogmodel.js
+importamos en BlogController.js el modelo que creamos en BlogModel.js 
+Confiruramos las rutas en routes.js
+Configuramos el archivo principal app.js
+Descargamos la extension thunder para hacer las solicitudes
+Ejecutamos nodemon app para correr la api.
+En thunder creamos una nueva solicitud con la url: http://localhost:8000/blogs/ de tipo Get para traer 
+todos los registros.
+Si mandamos un get http://localhost:8000/blogs/4 por ejemplo nos devuelve el objeto cuyo id es = al numero. 
+Esto esta configurado en BlogController.
+Si queremos probar el envio de datos cambiamos el GET a POST y agregamos un body:
+
+{
+    "title":"Titulo nuevo",
+    "content":"Esto es una prueba."
+}
+
+Cuando enviamos debe salir:
+ {
+  "message": "¡Registro creado correctamente!"
+}
+
+Para probar editar un registro cambiamos el metodo a PUT seleccionando con el ID: http://localhost:8000/blogs/4
+{
+    "title":"Titulo nuevo",
+    "content":"Hacemos el cambio."
+}
+
+Para eliminar usamos el metodo DELETE y seleccionamos por el ID http://localhost:8000/blogs/4
+
+
+
+
+----------------------------------------------------------------------------------------------
+Ahora volvemos para atras con cd ..
+ejecutamos npx create-react-app react-front creara una carpeta llamada react-front 
+ingresamos cd react-front y ejecutamos npm start
+Creamos en la carpeta src la carpeta blog > CreateBlog.js
+                                          > EditBlog.js
+                                          > ShowBlog.js
+axios se usa porque vamos a hacer solicitudes al backend.
+npm i axios react-router-dom
+npm i bootstrap
+despues de instalar bootstrap lo importamos en index.js (linea 9)
+
+**En react la palabra clave class esta reservada entonces para darle una clase a una etiqueta html
+  debemos usar className **
+  Vamos a https://cdnjs.com/libraries/font-awesome y copiamos el link 
+  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css
+  vamos a public > index.html y pegamos el link en el head. De esta manera ya podemos agregar iconos.
+  Los buscamos en la pagina de font awesome y pegamos en los elementos html
+ahora desarrollamos ShowBlogs.js
